@@ -1,0 +1,6 @@
+make contoller
+php artisan make:contoller Folder/controllername
+create migrations
+php artisan make:migration create_units_tabl
+to migrate
+php artisan migrate\
