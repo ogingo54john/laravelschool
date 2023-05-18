@@ -37,10 +37,15 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-
                 <a href="{{ route("create_course") }}" class="btn btn-primary">Add New Course</a>
                 </h3>
               </div>
+              
+            @if (session("message"))
+            <div class="alert alert-success ms-3 mt-3"> {{ session("message") }}</div>
+            @endif
+
+
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -69,8 +74,9 @@
                     </td>
                     <td>{{ $course->created_at }}</td>
                     <td>
-                    {{-- <button  href="" class="btn btn-danger deleteuser" data-id="{{ $user->id }}"><i class="mdi mdi-delete"></i></button>
-                        <a href="/admin/users/{{ $user -> id }}/edit" class="btn btn-primary"><i class="mdi mdi-pencil"></i></a> --}}
+
+                    <button data-id="{{ $course->id }}"  class="btn btn-danger delete-course" >Delete</button>
+                    <a href="/admin/courses/edit/{{ $course -> id }}" class="btn btn-primary"><i class="far fa-edit"></i></a>
                     </td>
                   </tr>
                   @empty
@@ -110,4 +116,7 @@
 @endsection
 @section("scripts")
 @include("layouts.tables")
+
+<script src="{{ asset("admin/assets/js/actions/deletecourse.js")}}"></script>
+<script src="{{ asset("admin/assets/js/swal.js")}}"></script>
 @endsection

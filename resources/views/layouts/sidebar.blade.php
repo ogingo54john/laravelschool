@@ -130,6 +130,8 @@
             </ul>
           </li>
 
+
+
            <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
@@ -155,8 +157,34 @@
             </ul>
           </li>
 
+{{-- units --}}
 
+           <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+         Units
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">6</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route("units") }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Units</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route("create_unit") }}" class="nav-link">
+                  <i class="far fa-plus-square nav-icon"></i>
+                  <p>Add Unit</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
+          {{-- end of units --}}
 
 
 

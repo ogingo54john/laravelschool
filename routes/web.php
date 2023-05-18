@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\CoursesController;
-
+use App\Http\Controllers\Admin\UnitsController;
 Auth::routes();
 
 // Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
@@ -148,11 +148,20 @@ Route::prefix("admin")->middleware(["auth", "isAdmin"])->group(function(){
 Route::controller(CoursesController::class)->group(function () {
     Route::get('/courses', 'courses')->name("courses");
     Route::get('/create_course', 'create')->name("create_course");
-    // Route::post('/create_user', 'store');
-    // Route::post('/email-availability', 'emailAvailability');
-    // Route::get('/users/{id}/edit', 'editUser');
+    Route::post('/create_course', 'store');
+    Route::get('/courses/edit/{id}', 'editCourse');
     // Route::post('/users/{id}/edit', 'updateUser');
-    // Route::post('/deletepackage/{id}', 'deletePackage');
+    Route::post('/deletecourse/{id}', 'delete');
+});
+
+// Units Routes
+Route::controller(UnitsController::class)->group(function () {
+    Route::get('/units', 'units')->name("units");
+    Route::get('/create_unit', 'create')->name("create_unit");
+    // Route::post('/create_course', 'store');
+    // Route::get('/courses/edit/{id}', 'editCourse');
+    // Route::post('/users/{id}/edit', 'updateUser');
+    // Route::post('/deletecourse/{id}', 'delete');
 });
 
 

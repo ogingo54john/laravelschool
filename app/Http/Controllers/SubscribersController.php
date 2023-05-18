@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Subscribers;
 use App\Http\Requests\SubscriberFormRequest;
-use Response;
+use Illuminate\Support\Facades\Response;
 class SubscribersController extends Controller
 {
     public function subscribe(SubscriberFormRequest $request){
