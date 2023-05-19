@@ -150,7 +150,7 @@ Route::controller(CoursesController::class)->group(function () {
     Route::get('/create_course', 'create')->name("create_course");
     Route::post('/create_course', 'store');
     Route::get('/courses/edit/{id}', 'editCourse');
-    // Route::post('/users/{id}/edit', 'updateUser');
+    Route::post('/courses/edit/{id}', 'update');
     Route::post('/deletecourse/{id}', 'delete');
 });
 

@@ -47,13 +47,16 @@ class CoursesController extends Controller
     public function editCourse(int $id){
         $course = Courses::find($id);
         if($course){
-            return Response::json([
-                $course
-            ]);
+            return view("admin.courses.edit", compact("course"));
 
         }else{
             return redirect()->back()->with("message","Course Not Found");
 
         }
     }
+
+public function update(){
+    
+}
+
 }
