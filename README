@@ -1,6 +1,17 @@
+all commits
+
+git commit -m "First Commit"
+git commit -m "Second Commit"
+git commit -m "Third Commit"
+
+
 
 git branch -vva
 git fetch origin
 git checkout
 git pull
-git checkout --track name of branch
+
+
+# git branch -M main
+# git remote add origin https://github.com/felixomundi/laravelschool.git
+# git push -u origin main

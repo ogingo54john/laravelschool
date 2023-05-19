@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\ServiceFormRequest;
 use App\Models\Services;
 use Illuminate\Support\Str;
-use Redirect, Response;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
+
 class ServicesController extends Controller
 {
 /**

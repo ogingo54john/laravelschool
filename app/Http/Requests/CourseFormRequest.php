@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rule;
 class CourseFormRequest extends FormRequest
 {
     /**
@@ -23,9 +23,42 @@ class CourseFormRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            "title" =>["required", "string","unique:courses,title",],
-            "status" => ["required","integer",],
+
+        $rules = [
+            "status"=> ["required", "integer"],
         ];
+
+        if($this->getMethod()== "POST"){
+            $rules += [
+                "title" =>["required", "string","unique:courses,title",],
+            ];
+        }
+
+        if($this->getMethod()== "PUT"){
+            $rules += [
+                "title" =>
+                [
+                "required",
+                "string",
+                Rule::unique("courses")->ignore($this->id),
+            ],
+            ];
+        }
+        return $rules;
     }
+
+
+
+public function messages(){
+    return [
+
+        "title.required" =>"Course Title is required",
+        "status.required" =>"Course Status is required",
+        "title.unique" =>"The title already Exists",
+
+
+    ];
 }
+
+}
+

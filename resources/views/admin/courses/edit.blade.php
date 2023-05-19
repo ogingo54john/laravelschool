@@ -40,7 +40,7 @@
               </div>
               <!-- /.card-header -->
 
-            @if ($errors->any())
+            {{-- @if ($errors->any())
                 <div class="alert alert-danger mt-2">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -48,9 +48,14 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+            @endif --}}
 
-        <form class="mt-3" id="simple_form" autocomplete="off" novalidate="novalidate" >
+            <div class="m-2">
+ <ul  class="text-danger d-none" id="update-errors">
+             </ul>
+            </div>
+
+        <form  id="simple_form" autocomplete="off" novalidate="novalidate" >
 
         @csrf
         {{-- card-body --}}
@@ -60,9 +65,9 @@
 
                 <div class="control-group col-md-6">
                 <div class="form-group mb-0 pb-2">
-                <input type="text" name="name"
+                <input type="text" name="title"
                 value="{{ $course -> title }}"
-                id="name" class="form-control" placeholder="Course Title" required="required" data-validation-required-message="Course Title is required." />
+                id="title" class="form-control" placeholder="Course Title" required="required" data-validation-required-message="Course Title is required." />
                 <p class="text-danger help-block"></p>
                 <span id="name-availability-status" style="font-size:12px;"></span>
                 </div>
@@ -71,9 +76,9 @@
                 <div class="control-group col-md-6">
                 <div class="form-group">
                 <select name="status" id="status" class="form-control">
-                <option value="{{ $course -> status == "0" ? "selected" : "" }}" selected> Visible </option>
-
-                <option value="{{ $course -> status == "1" ? "selected" : "" }}" selected>Hidden</option>
+                <option value="{{ $course -> status }}" selected> Visible </option>
+                <option value="0">Visible</option>
+                <option value="1">Hidden</option>
                 </select>
                 <p class="text-danger help-block"></p>
 
@@ -114,5 +119,6 @@
 
 <script src="{{ asset("admin/assets/js/jqBootstrapValidation.min.js")}}"></script>
 <script src="{{ asset("admin/assets/js/actions/updatecourse.js")}}"></script>
+<script src="{{ asset("admin/assets/js/axios.js")}}"></script>
 
 @endsection

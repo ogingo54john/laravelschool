@@ -55,8 +55,23 @@ class CoursesController extends Controller
         }
     }
 
-public function update(){
-    
+public function update(CourseFormRequest $request,$id){
+        $course = Courses::find($id);
+        if($course){
+            $data = $request->validated();
+            $course->update([
+                "title" => $data["title"],
+                "status" => $data["status"],
+            ]);
+            return Response::json([
+                "status"=>200,
+                "message" => "Course Updated Successfully"
+            ]);
+        }
+        else{
+            return redirect()->back()->with("message","Course Not Found");
+
+        }
 }
 
 }
