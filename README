@@ -15,3 +15,5 @@ git pull
 # git branch -M main
 # git remote add origin https://github.com/felixomundi/laravelschool.git
 # git push -u origin main
+
+php artisan make:model -mcr Photo

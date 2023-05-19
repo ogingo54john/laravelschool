@@ -158,7 +158,7 @@ Route::controller(CoursesController::class)->group(function () {
 Route::controller(UnitsController::class)->group(function () {
     Route::get('/units', 'units')->name("units");
     Route::get('/create_unit', 'create')->name("create_unit");
-    // Route::post('/create_course', 'store');
+    Route::post('/create_unit', 'store');
     // Route::get('/courses/edit/{id}', 'editCourse');
     // Route::post('/users/{id}/edit', 'updateUser');
     // Route::post('/deletecourse/{id}', 'delete');

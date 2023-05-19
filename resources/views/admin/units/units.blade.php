@@ -35,7 +35,7 @@
               <div class="card-header">
                 <h3 class="card-title">
 
-                <a href="{{ route("create_course") }}" class="btn btn-primary">Add New Unit</a>
+                <a href="{{ route("create_unit") }}" class="btn btn-primary">Add New Unit</a>
                 </h3>
               </div>
               <!-- /.card-header -->
@@ -58,7 +58,7 @@
                   <tr>
                     <td>{{ $key + 1 }}</td>
                     <td>{{$unit->unit_code}}</td>
-                    <td>{{ $units->title }}</td>
+                    <td>{{ $unit->title }}</td>
                    <td>
                     @if ($unit->course)
                     {{ $unit->course->title }}
@@ -66,7 +66,7 @@
                     No Course
                     @endif
 
-                    <td> 
+                    <td>
                     @if ($unit->status == "0")
                   <label class="badge badge-danger">Active</label>
                    @elseif($unit->status == "1")
@@ -79,7 +79,7 @@
                         <a href="/admin/users/{{ $user -> id }}/edit" class="btn btn-primary"><i class="mdi mdi-pencil"></i></a> --}}
                     </td>
                     <td></td>
-                 
+
                   </tr>
                   @empty
                   <tr><td colspan="7" class="text-center">No Units Found</td></tr>

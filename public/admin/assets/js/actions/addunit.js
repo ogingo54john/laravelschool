@@ -6,12 +6,10 @@ $(document).ready(function(){
     event.preventDefault();
     $this = $('#submit');
     $this.prop('disabled', true);
-    var id = $this.data("id");
     var formData = new FormData($("#simple_form")[0]);
-    let url = "/admin/courses/edit/"+id;
+    let url = "/admin/create_unit";
     var config = {
     headers: {
-            'Content-Type': 'application/json',
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             mode: "same-origin",
         },
@@ -19,25 +17,25 @@ $(document).ready(function(){
 
         try {
 
-     var response = await axios.put(url, formData, config);
+     var response = await axios.post(url, formData, config);
      if (response.data.status === 200) {
-        $("#update-errors").removeClass("text-danger d-none");
-        $("#update-errors").addClass("text-success");
-        $('#update-errors').html("<div class='alert alert-success'>");
-        $('#update-errors> .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+        $("#save-errors").removeClass("text-danger d-none");
+        $("#save-errors").addClass("text-success");
+        $('#save-errors').html("<div class='alert alert-success'>");
+        $('#save-errors> .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
         .append("</button>");
-        $('#update-errors> .alert-success')
+        $('#save-errors> .alert-success')
         .append("<strong>"+ response.data.message +"</strong>");
-        $('#update-errors> .alert-success')
+        $('#save-errors> .alert-success')
         .append('</div>');
         complete();
         }
 
         } catch (error) {
-        $("#update-errors").html("");
-        $("#update-errors").removeClass("d-none");
+        $("#save-errors").html("");
+        $("#save-errors").removeClass("d-none");
         $.each(error.response.data.errors, function (key, value) {
-        $("#update-errors").append('<li class="alert alert-danger">' + value + '</li');
+        $("#save-errors").append('<li class="alert alert-danger">' + value + '</li');
         });
         complete();
         }
@@ -47,7 +45,7 @@ $(document).ready(function(){
 
 function complete(){
     setTimeout(function () {
-    $("#update-errors").html("");
+    $("#save-errors").html("");
     $('#simple_form').trigger('reset');
     $this.prop("disabled", false);
     }, 5000);

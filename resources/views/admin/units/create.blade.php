@@ -14,12 +14,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add Course Form</h1>
+            <h1>Add Unit Form</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Add Course Form</li>
+              <li class="breadcrumb-item active">Add Unit Form</li>
             </ol>
           </div>
         </div>
@@ -36,55 +36,82 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Course Form</h3>
+                <h3 class="card-title">Add Unit  Form</h3>
               </div>
               <!-- /.card-header -->
 
-            @if ($errors->any())
-                <div class="alert alert-danger mt-2">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+           <div class="m-2">
+            <ul  class="text-danger d-none" id="save-errors">
+           </div>
 
 
-            @if (session("message"))
-            <div class="alert alert-success ms-3 mt-3"> {{ session("message") }}</div>
-            @endif
-
-        <form class="mt-3" method="POST" action="{{ route("create_course") }}" autocomplete="off">
+        <form id="simple_form" novalidate="novalidate" autocomplete="off">
 
         @csrf
         {{-- card-body --}}
         <div class="card-body">
 
-        <div class="row">
-        <div class="form-group col-md-6">
-        <label for="title">Name</label>
-        <input type="text" name="title" class="form-control" id="title" placeholder="Enter Course Title">
-        </div>
+            <div class="row">
+                <div class="control-group col-md-6">
+                <div class="form-group mb-0 pb-2">
+                <label for="unit_code">Unit Code</label>
+                <input  name="unit_code"
+                id="unit_code" class="form-control" placeholder="Unit Code" required="required" data-validation-required-message="Unit Code is required." />
+                <p class="text-danger help-block"></p>
+                </div>
+                </div>
 
+                <div class="control-group col-md-6">
+                <div class="form-group">
+                    <label for="status">Unit Status</label>
+                <select name="status" id="status" class="form-control"
 
-        <div class="form-group col-md-6">
-        <label for="status">Status</label>
-        <select  class="form-control" name="status" id="status">
-        <option value="">Select Status</option>
-        <option value="0">Active</option>
-        <option value="1">Inactive</option>
-        </select>
-        </div>
+                required="required" data-validation-required-message="Select Unit Status"
+                >
+                    <option value="">Select Status</option>
+                <option value="0">Visible</option>
+                <option value="1">Hidden</option>
+                </select>
+                <p class="text-danger help-block"></p>
 
-        </div>
+                </div>
+                </div>
+                <div class="control-group col-md-6">
+                <div class="form-group mb-0 pb-2">
+                    <label for="title">Title</label>
+                <input type="text" name="title"
+                id="title" class="form-control" placeholder="Unit Title" required="required" data-validation-required-message="Unit Title is required." />
+                <p class="text-danger help-block"></p>
+                </div>
+                </div>
 
+                <div class="control-group col-md-6">
+                <div class="form-group">
+                <label for="courses">Unit Course</label>
+                <select name="courses_id" id="courses_id" class="form-control"
+                required="required" data-validation-required-message="Course is required."
+                >
+
+                    @forelse ($courses as $course)
+                    <option value="{{ $course->id}}">{{ $course->title}}</option>
+                    @empty
+                 <option value=""> No course available</option>
+                    @endforelse
+
+                </select>
+                <p class="text-danger help-block"></p>
+
+                </div>
+                </div>
+            </div>
         </div>
 
         <!-- /.card-body -->
 
         <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
+         <a href='/admin/units'  class="btn btn-dark float-start">Back</a>
+
+        <button type="submit" id="submit" class="btn btn-primary float-end">Submit</button>
         </div>
         </div>
 
@@ -111,14 +138,9 @@
 @endsection
 @section("scripts")
 
-{{-- <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script> --}}
+<script src="{{ asset("admin/assets/js/jqBootstrapValidation.min.js")}}"></script>
 
-<!-- Page specific script -->
-<script>
-{{-- $(function () {
-  bsCustomFileInput.init();
-}); --}}
-</script>
-
+<script src="{{ asset("admin/assets/js/axios.js")}}"></script>
+<script src="{{ asset("admin/assets/js/actions/addunit.js")}}"></script>
 
 @endsection

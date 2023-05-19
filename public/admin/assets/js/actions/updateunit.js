@@ -8,7 +8,7 @@ $(document).ready(function(){
     $this.prop('disabled', true);
     var id = $this.data("id");
     var formData = new FormData($("#simple_form")[0]);
-    let url = "/admin/courses/edit/"+id;
+    let url = "/admin/units/create/"+id;
     var config = {
     headers: {
             'Content-Type': 'application/json',
