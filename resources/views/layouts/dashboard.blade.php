@@ -31,7 +31,7 @@
   {{-- <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css"> --}}
   <!-- summernote -->
   {{-- <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css"> --}}
-
+<link rel="stylesheet" href="{{ asset("assets/fontawesome/css/all.css") }}">
  @yield('styles')
 {{-- @livewireStyles --}}
 </head>
@@ -96,6 +96,7 @@
 <script src="{{ asset("school/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js") }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset("school/dist/js/adminlte.js") }}"></script>
+<script src="{{ asset("assets/fontawesome/css/all.js") }}"></script>
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{ asset("school/dist/js/demo.js") }}"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

@@ -38,6 +38,12 @@
                 <a href="{{ route("create_unit") }}" class="btn btn-primary">Add New Unit</a>
                 </h3>
               </div>
+
+
+               @if (session("message"))
+            <div class="alert alert-success ms-3 mt-3"> {{ session("message") }}</div>
+            @endif
+
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -75,8 +81,8 @@
                     </td>
                     <td>{{ $unit->created_at }}</td>
                     <td>
-                    {{-- <button  href="" class="btn btn-danger deleteuser" data-id="{{ $user->id }}"><i class="mdi mdi-delete"></i></button>
-                        <a href="/admin/users/{{ $user -> id }}/edit" class="btn btn-primary"><i class="mdi mdi-pencil"></i></a> --}}
+                    <button   class="btn btn-danger delete-unit" data-id="{{ $unit->id }}"><i class="fa fa-trash"></i></button>
+                        <a href="/admin/units/edit/{{ $unit -> id }}" class="btn btn-primary"><i class="far fa-edit"></i></a>
                     </td>
                     <td></td>
 
@@ -122,8 +128,7 @@
 @endsection
 
 
-
-
-
 @section("scripts")
+<script src="{{ asset("admin/assets/js/actions/deleteunit.js") }}"></script>
+<script src="{{ asset("admin/assets/js/swal.js") }}"></script>
 @endsection

@@ -36,16 +36,29 @@ class UnitFormRequest extends FormRequest
             ];
         }
 
-        // if($this->getMethod() == "PUT"){
-        //     $rules += [
-        //         "title" =>
-        //         [
-        //         "required",
-        //         "string",
-        //         Rule::unique("courses")->ignore($this->id),
-        //     ],
-        //     ];
-        // }
+        if($this->getMethod() == "PUT"){
+            $rules += [
+    "title" =>  [
+                "required",
+                "string",
+                Rule::unique("units")->ignore($this->id),  ],
+
+    "course" =>["required","integer",],
+
+            ];
+        }
         return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+
+            "title.required" =>"Unit Title is required",
+            "status.required" =>"Unit Status is required",
+            "title.unique" =>"The title already Exists",
+            "unit_code.required" => "Unit Code is Required"
+
+        ];
     }
 }

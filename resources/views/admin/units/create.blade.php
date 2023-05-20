@@ -91,7 +91,7 @@
                 <select name="courses_id" id="courses_id" class="form-control"
                 required="required" data-validation-required-message="Course is required."
                 >
-
+                      <option value="">Select Course</option>
                     @forelse ($courses as $course)
                     <option value="{{ $course->id}}">{{ $course->title}}</option>
                     @empty

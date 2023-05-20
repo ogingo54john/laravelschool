@@ -8,7 +8,7 @@ $(document).ready(function(){
     $this.prop('disabled', true);
     var id = $this.data("id");
     var formData = new FormData($("#simple_form")[0]);
-    let url = "/admin/units/create/"+id;
+    let url = "/admin/units/edit/"+id;
     var config = {
     headers: {
             'Content-Type': 'application/json',
@@ -20,19 +20,28 @@ $(document).ready(function(){
         try {
 
      var response = await axios.put(url, formData, config);
-     if (response.data.status === 200) {
-        $("#update-errors").removeClass("text-danger d-none");
-        $("#update-errors").addClass("text-success");
-        $('#update-errors').html("<div class='alert alert-success'>");
-        $('#update-errors> .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-        .append("</button>");
-        $('#update-errors> .alert-success')
-        .append("<strong>"+ response.data.message +"</strong>");
-        $('#update-errors> .alert-success')
-        .append('</div>');
+            if (response.data.status === 200) {
+                $("#update-errors").removeClass("text-danger d-none");
+                $("#update-errors").addClass("text-success");
+                $('#update-errors').html("<div class='alert alert-success'>");
+                $('#update-errors> .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                    .append("</button>");
+                $('#update-errors> .alert-success')
+                    .append("<strong>" + response.data.message + "</strong>");
+                $('#update-errors> .alert-success')
+                    .append('</div>');
+            } else if (response.data.status === 404) {
+                $("#update-errors").removeClass("text-danger d-none");
+                $("#update-errors").addClass("text-success");
+                $('#update-errors').html("<div class='alert alert-success'>");
+                $('#update-errors> .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                    .append("</button>");
+                $('#update-errors> .alert-success')
+                    .append("<strong>" + response.data.message + "</strong>");
+                $('#update-errors> .alert-success')
+                    .append('</div>');
+            }
         complete();
-        }
-
         } catch (error) {
         $("#update-errors").html("");
         $("#update-errors").removeClass("d-none");

@@ -159,9 +159,9 @@ Route::controller(UnitsController::class)->group(function () {
     Route::get('/units', 'units')->name("units");
     Route::get('/create_unit', 'create')->name("create_unit");
     Route::post('/create_unit', 'store');
-    // Route::get('/courses/edit/{id}', 'editCourse');
-    // Route::post('/users/{id}/edit', 'updateUser');
-    // Route::post('/deletecourse/{id}', 'delete');
+    Route::get('/units/edit/{id}', 'editUnit');
+    Route::put('/units/edit/{id}', 'updateUnit');
+    Route::post('/deleteunit/{id}', 'deleteUnit');
 });
 
 
