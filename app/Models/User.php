@@ -53,7 +53,7 @@ class User extends Authenticatable
         return $this->hasMany(Post::class, "user_id", "id");
 
     }
-    public function studentProfile(){
-        return $this->hasOne(Student::class, "userId", "id");
+    public function student(){
+        return $this->hasOne(Student::class, "user_id", "id");
     }
 }

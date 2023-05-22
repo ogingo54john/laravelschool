@@ -1,3 +1,4 @@
+
 @extends("layouts.dashboard")
 
 @section("styles")
@@ -14,12 +15,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add Student Form</h1>
+            {{-- <h1>Update Student Form</h1> --}}
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Add Student Form</li>
+              <li class="breadcrumb-item active">Update Student Form</li>
             </ol>
           </div>
         </div>
@@ -36,7 +37,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Student Form</h3>
+                <h3 class="card-title">Update Student Form</h3>
               </div>
               <!-- /.card-header -->
         @if (session("message"))
@@ -68,7 +69,7 @@
         <div class="form-group col-md-6">
         <label for="name">Name <span style="color:red">*</span></label>
         <input type="text" class="form-control @error('name') is-invalid @enderror"
-         id="name" name="name" placeholder="Enter Student Name" value="{{ old('name') }}" autofocus>
+         id="name" name="name" placeholder="Enter Student Name" value="{{  }}" autofocus>
         @error('name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

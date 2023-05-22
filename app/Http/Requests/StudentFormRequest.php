@@ -27,11 +27,22 @@ class StudentFormRequest extends FormRequest
 
         $rules =[
             "name"=>["required", "string","max:60"],
-            "gender" =>[
-                "required",
-                "string", ],
+            "gender" =>["required",  "string", ],
             "dob"=>["date","nullable",],
-            
+            "father_name"=>["string","max:60","nullable"],
+            "father_occupation"=>["string","max:60","nullable"],
+            "father_phone_number"=>["string", "max:15", "min:10", "nullable"],
+            "mother_name"=>["string","max:60","nullable"],
+            "mother_occupation"=>["string","max:60","nullable"],
+            "mother_phone_number"=>["string", "max:15", "min:10", "nullable"],
+            "county"=>["string","max:60","nullable"],
+            "district"=>["string","max:60","nullable"],
+            "division"=> ["string","max:60","nullable"],
+            "location"=>["string","max:60","nullable"],
+            "sub_location"=>["string","max:60","nullable"],
+
+
+
         ];
         if($this->getMethod() =="POST"){
             $rules += [
@@ -42,13 +53,19 @@ class StudentFormRequest extends FormRequest
                     "required",
                     "string","max:15",
                     Rule::unique('students')
-                       ->where('phone', $this->phone)
+                       ->where('phone', $this->phone),
                  ],
+                 "admission_number"=>["required", "integer",
+                 Rule::unique('students')
+                 ->where('admission_number', $this->admission_number)
+                ],
+
+
                  "password" =>[
                     "required",
                     "string",
                     "min:8"],
-                    "image"=>["mimes:png,jpg,jpeg","max:2048","required"],
+                "image"=>["mimes:png,jpg,jpeg","max:2048","required"],
 
             ];
         }

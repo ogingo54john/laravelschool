@@ -10,7 +10,7 @@ class Student extends Model
 {
     use HasFactory;
     protected $table="students";
-    
+
     protected $fillable= [
         "user_id",
         "phone",
@@ -32,7 +32,7 @@ class Student extends Model
 
     ];
 
-    public function student(){
+    public function user(){
         return $this->belongsTo(User::class, "user_id","id");
     }
 }
