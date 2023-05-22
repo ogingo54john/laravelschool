@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Units,App\Models\Courses;
+use App\Models\Units;
+use App\Models\Courses;
 use App\Http\Requests\UnitFormRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;

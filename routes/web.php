@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\CoursesController;
 use App\Http\Controllers\Admin\UnitsController;
+use App\Http\Controllers\Admin\BranchesController;
 Auth::routes();
 
 // Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
@@ -133,16 +134,7 @@ Route::prefix("admin")->middleware(["auth", "isAdmin"])->group(function(){
     });
 
 
-     //  Student routes
-     Route::controller(StudentController::class)->group(function () {
-        Route::get('/students', 'students')->name("students");
-        Route::get('/create_student', 'create')->name("create_student");
-        // Route::post('/create_user', 'store');
-        // Route::post('/email-availability', 'emailAvailability');
-        // Route::get('/users/{id}/edit', 'editUser');
-        // Route::post('/users/{id}/edit', 'updateUser');
-        // Route::post('/deletepackage/{id}', 'deletePackage');
-    });
+
 
 // Courses Routes
 Route::controller(CoursesController::class)->group(function () {
@@ -164,6 +156,27 @@ Route::controller(UnitsController::class)->group(function () {
     Route::post('/deleteunit/{id}', 'deleteUnit');
 });
 
+// Branches Routes
+Route::controller(BranchesController::class)->group(function () {
+    Route::get('/branches', 'index')->name("branches");
+    Route::get('/create_branch', 'create')->name("create_branch");
+    Route::post('/create_branch', 'store');
+    Route::get('/branches/edit/{id}', 'edit');
+    Route::put('/branches/edit/{id}', 'update');
+    Route::post('/deletebranch/{id}', 'destroy');
+});
+
+
+  //  Student routes
+  Route::controller(StudentController::class)->group(function () {
+    Route::get('/students', 'students')->name("students");
+    Route::get('/create_student', 'create')->name("create_student");
+    Route::post('/create_student', 'store');
+    // Route::post('/email-availability', 'emailAvailability');
+    // Route::get('/users/{id}/edit', 'editUser');
+    // Route::post('/users/{id}/edit', 'updateUser');
+    // Route::post('/deletepackage/{id}', 'deletePackage');
+});
 
 
 });

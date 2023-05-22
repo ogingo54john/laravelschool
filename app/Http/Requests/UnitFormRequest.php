@@ -38,12 +38,12 @@ class UnitFormRequest extends FormRequest
 
         if($this->getMethod() == "PUT"){
             $rules += [
-    "title" =>  [
+          "title" =>  [
                 "required",
                 "string",
                 Rule::unique("units")->ignore($this->id),  ],
 
-    "course" =>["required","integer",],
+          "course" =>["required","integer",],
 
             ];
         }

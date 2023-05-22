@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
+            $table->string("title")->unique();
+            $table->tinyInteger("status")->default("0")->comment("0=Active, 1=Inactive");
+            $table->string("initial")->unique();
             $table->timestamps();
         });
     }

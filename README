@@ -17,3 +17,6 @@ git pull
 # git push -u origin main
 
 php artisan make:model -mcr Photo
+
+php artisan migrate:refresh --path=/database/migrations/2023_05_20_071207_create_branches_table.php
+php artisan migrate:refresh --step=5

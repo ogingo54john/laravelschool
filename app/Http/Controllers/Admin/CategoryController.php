@@ -43,7 +43,7 @@ public function catAvailability(Request $request){
 }
 
 
-public function deleteCategory(Request $request, $id){
+public function deleteCategory($id){
     $category = Category::find($id);
     if($category){
     $category->delete();

@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Post;
+use App\Models\Profile;
+use App\Models\Student;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use App\Models\Profile;
-use App\Models\Post;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -49,5 +51,9 @@ class User extends Authenticatable
     }
     public function userPost(){
         return $this->hasMany(Post::class, "user_id", "id");
+
+    }
+    public function studentProfile(){
+        return $this->hasOne(Student::class, "userId", "id");
     }
 }
