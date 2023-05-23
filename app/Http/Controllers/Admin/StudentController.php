@@ -7,8 +7,11 @@ use App\Http\Requests\StudentFormRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
+use PhpParser\Node\Stmt\TryCatch;
+
 class StudentController extends Controller
 {
 
@@ -21,11 +24,12 @@ class StudentController extends Controller
     }
 
     public function store(StudentFormRequest $request) {
+       try{
         $data =$request->validated();
         if($request->hasFile("image")){
             $image = $data["image"];
             $imagename = time() .'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('/students'), $imagename);
+            $image->move(public_path('/students'),$imagename);
         }
         else{
             $imagename = "";
@@ -59,9 +63,15 @@ class StudentController extends Controller
                 "image"=>$imagename,
 
             ]);
-        }
 
-        return redirect()->back()->with("message","Student Saved Sucessfully");
+            return redirect()->back()->with("message","Student Saved Sucessfully");
+        }
+       }
+       catch(Exception $ex){
+
+       }
+
+
 
     }
 
@@ -69,7 +79,7 @@ class StudentController extends Controller
     public function edit($id){
         $student = Student::find($id);
         if($student){
-           return view("admin.students.edit");
+           return view("admin.students.edit",compact("student"));
         } else{
                 return redirect()->back()->with("message","Student not Found");
             }
@@ -93,4 +103,33 @@ class StudentController extends Controller
            ]);
             }
     }
+
+
+public function update(StudentFormRequest $request){
+    // find user first
+    // $user = User::findOrFail(intval($userId));
+    // find student
+    // $student = $user->student()->where("id", intval($id))->first();
+    // if($user && $student){
+//    $data = $request->validated();
+
+
+    // }
+    // else{
+    //     return redirect()->back()->with("error", "No matching records for that student Found");
+
+    // }
+
+    try {
+        $data = $request->validated();
+        $userId = $data["userId"];
+        return redirect()->back()->with("message",);
+    }
+    catch(Exception ){
+
+    }
+
+
+}
+
 }

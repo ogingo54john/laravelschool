@@ -133,55 +133,23 @@
 
 
            <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route("courses") }}" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
                 Courses
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route("courses") }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All Courses</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route("create_course") }}" class="nav-link">
-                  <i class="far fa-plus-square nav-icon"></i>
-                  <p>Add Course</p>
-                </a>
-              </li>
-            </ul>
+
           </li>
 
-{{-- units --}}
-
+           {{-- units --}}
            <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route("units") }}" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
-         Units
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
+           Units
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route("units") }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All Units</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route("create_unit") }}" class="nav-link">
-                  <i class="far fa-plus-square nav-icon"></i>
-                  <p>Add Unit</p>
-                </a>
-              </li>
-            </ul>
           </li>
 
           {{-- end of units --}}
@@ -191,29 +159,13 @@
 
          {{-- branches  --}}
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
+            <a href="{{ route("branches") }}" class="nav-link">
               <i class="nav-icon fa-solid fa-code-branch"></i>
               <p>
              Branches
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route("branches") }}" class="nav-link">
-                  <i class="fa fa-list nav-icon"></i>
-                  <p>All Branches</p>
-                </a>
-              </li>
-            <li class="nav-item">
-                <a href="{{ route("create_branch") }}" class="nav-link">
-                  <i class="far fa-add nav-icon"></i>
-                  <p>Add Branch</p>
-                </a>
-              </li>
 
-            </ul>
           </li>
           {{-- branches --}}
 
@@ -225,24 +177,9 @@
               <i class="nav-icon fa-solid fa-code-branch"></i>
               <p>
              Staff
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route("branches") }}" class="nav-link">
-                  <i class="fa fa-list nav-icon"></i>
-                  <p>All Staff</p>
-                </a>
-              </li>
-            <li class="nav-item">
-                <a href="{{ route("create_branch") }}" class="nav-link">
-                  <i class="far fa-add nav-icon"></i>
-                  <p>Add Staff</p>
-                </a>
-              </li>
 
-            </ul>
           </li>
           {{-- Staff --}}
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rules\File;
 class StudentFormRequest extends FormRequest
 {
     /**
@@ -48,10 +48,12 @@ class StudentFormRequest extends FormRequest
             $rules += [
                 "email" =>[
                     "required",
-                    "email","max:60","unique:users,email,"],
+                    "email","max:60", "unique:users,email,"],
                 "phone" =>[
                     "required",
-                    "string","max:15",
+                    "string",
+                    "min:10",
+                    "max:15",
                     Rule::unique('students')
                        ->where('phone', $this->phone),
                  ],
@@ -65,8 +67,29 @@ class StudentFormRequest extends FormRequest
                     "required",
                     "string",
                     "min:8"],
-                "image"=>["mimes:png,jpg,jpeg","max:2048","required"],
 
+                    'image' => ['required','image','mimes:jpg,png,jpeg','max:5120','dimensions:min_width=100,min_height=100,max_width=5000,max_height=5000',],
+                    // "image"=>[ 'required',
+                // File::image()
+                //     ->min(566)
+                //     // ->max(12 * 1024)
+                //     // ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
+                // ],
+
+            ];
+        }
+        if($this->getMethod() == "PUT"){
+            $rules += [
+                "studentId"=>["required", "integer"],
+                "userId"=>["required","integer"],
+                "phone" =>[
+                    "required",
+                    "string",
+                    "min:10",
+                    "max:15",
+                    Rule::unique('students')->ignore($this->id),
+
+                 ],
             ];
         }
 
@@ -88,6 +111,7 @@ class StudentFormRequest extends FormRequest
             "password.min"=>"Password should be at least 8 characters",
             "gender.required"=>"Student Gender is required",
             "image.required"=>"Student Photo is required",
+            "image.min"=>"Student Photo be upto 2mb",
 
 
 

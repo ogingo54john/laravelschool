@@ -173,7 +173,7 @@ Route::controller(BranchesController::class)->group(function () {
     Route::get('/create_student', 'create')->name("create_student");
     Route::post('/create_student', 'store');
     Route::get('/students/{id}/edit', 'edit');
-    // Route::post('/users/{id}/edit', 'updateUser');
+    Route::put('/students/{id}/edit', 'update');
     Route::post('/deletestudent/{userId}/{id}', 'destroy');
 });
 
