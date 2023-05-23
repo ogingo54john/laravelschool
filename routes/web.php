@@ -24,33 +24,6 @@ use App\Http\Controllers\Admin\UnitsController;
 use App\Http\Controllers\Admin\BranchesController;
 Auth::routes();
 
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
-
-// Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
-// Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
-// Route::get('/pricing', [App\Http\Controllers\PackageController::class, 'pricing'])->name('pricing');
-// Route::get('/pricing/detail/{slug}', [App\Http\Controllers\PackageController::class, 'pricingPackageDetail']);
-// Route::post('/bookPackage/{id}', [App\Http\Controllers\PackageController::class, 'bookPackage']);
-// Route::get('/services', [App\Http\Controllers\HomeController::class, 'services'])->name('services');
-// Route::post('/email', [App\Http\Controllers\EmailController::class, 'email'])->name('email');
-// Route::get('/service/{slug}', [App\Http\Controllers\HomeController::class, 'detail']);
-// Route::post('/subscribe', [App\Http\Controllers\SubscribersController::class, 'subscribe']);
-
-// Route::controller(BlogController::class)->group(function () {
-//     Route::get('/blog', 'posts');
-//     Route::get('/blog/{slug}', 'postDetail');
-//     Route::get('/blog/category/{slug}', 'categoryDetail');
-
-// });
-
-
-// ecommerce routes
-// Route::get('/shop', [App\Http\Controllers\ShopController::class, 'shop']);
-// Route::get('/shop/{slug}', [App\Http\Controllers\ShopController::class, 'productDetail']);
-
-
-// Route::post("/add-to-cart", [App\Http\Controllers\CartController::class, 'addToCart']);
-// Route::post("/delete-cart-item", [App\Http\Controllers\CartController::class, 'deleteCartItem']);
 
 // Route::middleware(["auth"])->group(function () {
 //     Route::get("/profile", [App\Http\Controllers\ProfileController::class, 'profile'])->name("profile");
@@ -65,62 +38,6 @@ Auth::routes();
 
 Route::prefix("admin")->middleware(["auth", "isAdmin"])->group(function(){
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name("dashboard");
-
-    // Services Routes
-    // Route::get('/services', [App\Http\Controllers\Admin\ServicesController::class, 'index'])->name("services");
-    // Route::get('/create_service', [App\Http\Controllers\Admin\ServicesController::class, 'create_service'])->name("create_service");
-    // Route::post('/store', [App\Http\Controllers\Admin\ServicesController::class, 'store']);
-    // Route::post('/exists', [App\Http\Controllers\Admin\ServicesController::class, 'exists']);
-    // Route::get('/update_service/{id}', [App\Http\Controllers\Admin\ServicesController::class, 'update_service']);
-    // Route::post('/update/{id}', [App\Http\Controllers\Admin\ServicesController::class, 'update']);
-    // Route::post('/delete_service/{id}', [App\Http\Controllers\Admin\ServicesController::class, 'deleteService']);
-
-    // Product routes
-    // Route::get('/products', [App\Http\Controllers\Admin\ProductController::class, 'index'])->name("products");
-    // Route::get('/create_product', [App\Http\Controllers\Admin\ProductController::class, 'create_product'])->name("create_product");
-    // Route::post('/save_product', [App\Http\Controllers\Admin\ProductController::class, 'save_product'])->name("save_product");
-    // Route::post('/product_availability', [App\Http\Controllers\Admin\ProductController::class, 'exists']);
-    // Route::get('/edit_product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'edit_product']);
-    // Route::post('/update_product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'updateProduct']);
-    // Route::post('/delete_product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'deleteProduct']);
-
-
-    // Category routes
-
-    // Route::controller(CategoryController::class)->group(function () {
-    //     Route::get('/categories', 'categories');
-    //     Route::get('/categories/create', 'createCategory');
-    //     Route::post('/categories/store', 'storeCategory');
-    //     Route::post('/categories/availability', 'catAvailability');
-    //     Route::post('/delete_category/{id}', 'deleteCategory');
-    //     Route::get('/edit_category/{id}', 'editCategory');
-    //     Route::post('/update_category/{id}', 'updateCategory');
-    // });
-
-
-    // Route::controller(PostsController::class)->group(function () {
-    //     Route::get('/posts', 'posts')->name("posts");
-    //     Route::get('/posts/create', 'createPost');
-    //     Route::post('/posts/store', 'storePost');
-    //     Route::post('/posts/delete/{id}', 'deletePost');
-    //     Route::get('/posts/edit/{id}', 'editPost');
-    //     Route::post('/posts/update/{id}', 'updatePost');
-    // });
-
-
-
-
-    // Pricing routes
-    // Route::controller(PricingController::class)->group(function () {
-    //     Route::get('/pricing', 'pricingList')->name("pricingList");
-    //     Route::get('/pricing/create', 'createPackage');
-    //     Route::post('/pricing/store', 'storePricingPackage');
-    //     Route::post('/pricing/availability', 'pricingPackageAvailability');
-    //     Route::get('/edit_package/{id}', 'editPackage');
-    //     Route::post('/updatepackage/{id}', 'updatePackage');
-    //     Route::post('/deletepackage/{id}', 'deletePackage');
-    // });
-
 
     //  Users routes
      Route::controller(UsersController::class)->group(function () {
