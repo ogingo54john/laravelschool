@@ -105,7 +105,7 @@ public function storePost(Request $request){
 
             }else
             {
-                $fileName = $post->image;
+                $fileName = $post -> image;
             }
 
         //Update Post

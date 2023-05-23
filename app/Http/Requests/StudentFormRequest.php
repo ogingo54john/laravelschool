@@ -67,7 +67,6 @@ class StudentFormRequest extends FormRequest
                     "required",
                     "string",
                     "min:8"],
-
                     'image' => ['required','image','mimes:jpg,png,jpeg','max:5120','dimensions:min_width=100,min_height=100,max_width=5000,max_height=5000',],
                     // "image"=>[ 'required',
                 // File::image()
@@ -82,14 +81,18 @@ class StudentFormRequest extends FormRequest
             $rules += [
                 "studentId"=>["required", "integer"],
                 "userId"=>["required","integer"],
+                // "email" =>  [
+                //     "required",
+                //     "email",
+                //     Rule::unique('users')->ignore($this->id),],
                 "phone" =>[
                     "required",
                     "string",
                     "min:10",
                     "max:15",
                     Rule::unique('students')->ignore($this->id),
-
                  ],
+                 'image' => ['image','mimes:jpg,png,jpeg','max:5120',],
             ];
         }
 

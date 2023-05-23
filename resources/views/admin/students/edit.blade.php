@@ -89,12 +89,14 @@
 
          <div class="form-group col-md-6">
         <label for="email">Email <span style="color:red">*</span></label>
-        <input type="email" name="email" value="{{ $student->user->email }}" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Enter Student Email">
-        @error('email')
+        <input type="email" name="email" value="{{ $student->user->email }}" readonly class="form-control"
+         {{-- class="form-control @error('email') is-invalid @enderror" --}}
+          id="email" placeholder="Enter Student Email">
+        {{-- @error('email')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror --}}
         </div>
 
 
@@ -120,7 +122,7 @@
 
         </div>
 
-        <div class="form-group col-md-6">
+        {{-- <div class="form-group col-md-6">
         <label for="admission_number">Admission number <span style="color:red">*</span></label>
         <input type="number" step="0.0" min="1" value="{{ $student->admission_number }}" name="admission_number" class="form-control @error('admission_number') is-invalid @enderror" id="admission_number" placeholder="Enter Student Admission number">
             @error('admission_number')
@@ -128,7 +130,7 @@
             <strong>{{ $message }}</strong>
             </span>
             @enderror
-            </div>
+            </div> --}}
 
 
         <div class="form-group col-md-6">
@@ -384,5 +386,8 @@ $('.btnPrevious').click(function(e) {
 });
 </script>
 
+
+
+{{-- <script src="{{ asset("admin/assets/js/actions/") }}"></script> --}}
 
 @endsection
