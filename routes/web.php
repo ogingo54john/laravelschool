@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\CoursesController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\BranchesController;
 use App\Http\Controllers\Student\StudentDashboardController;
+use App\Http\Controllers\Student\ProfileController;
 Auth::routes();
 
 Route::get("/", [App\Http\Controllers\HomeController::class, 'index']);
@@ -115,4 +116,6 @@ Route::controller(BranchesController::class)->group(function () {
 
 Route::prefix("student")->middleware(["auth", "isStudent"])->group(function(){
     Route::get('/dashboard', [App\Http\Controllers\Student\StudentDashboardController::class, 'index']);
+    Route::get('/profile', [App\Http\Controllers\Student\ProfileController::class, 'index']);
+    Route::get('/profile/create', [App\Http\Controllers\Student\ProfileController::class, 'create']);
 });

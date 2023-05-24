@@ -18,6 +18,7 @@
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
+
       </div>
 
 <!--
@@ -47,7 +48,53 @@
           </li>
 
 
+  {{-- # --}}
+  @if(Auth::user()->role_as=='2')
+  <li class="nav-item">
+    <a href="#" class="nav-link">
+      <i class="nav-icon fas fa-chart-pie"></i>
+      <p>
+        Account
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
 
+
+
+    <ul class="nav nav-treeview">
+@if (Auth::user()->student)
+<li class="nav-item">
+    <a href="{{url('/student/profile')}}" class="nav-link">
+      <i class="far fa-circle nav-icon"></i>
+      <p>Profile</p>
+    </a>
+  </li>
+@else
+<li class="nav-item">
+    <a href="{{url('/student/profile/create')}}" class="nav-link">
+      <i class="far fa-circle nav-icon"></i>
+      <p>Create Profile</p>
+    </a>
+  </li>
+@endif
+        <li class="nav-item">
+        <a href="{{url('/student/profile')}}" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Profile</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Update Password</p>
+        </a>
+
+    </ul>
+
+  </li>
+  @endif
+{{-- # --}}
 
           <li class="nav-item">
             <a href="#" class="nav-link bg-danger">
