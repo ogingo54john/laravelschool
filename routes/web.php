@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\UnitsController;
 use App\Http\Controllers\Admin\BranchesController;
 Auth::routes();
 
+Route::get("/", [App\Http\Controllers\HomeController::class, 'index']);
+
 
 // Route::middleware(["auth"])->group(function () {
 //     Route::get("/profile", [App\Http\Controllers\ProfileController::class, 'profile'])->name("profile");
@@ -89,8 +91,8 @@ Route::controller(BranchesController::class)->group(function () {
     Route::get('/students', 'students')->name("students");
     Route::get('/create_student', 'create')->name("create_student");
     Route::post('/create_student', 'store');
-    Route::get('/students/{id}/edit', 'edit');
-    Route::put('/students/{id}/edit', 'update');
+    Route::get('/students/{id}', 'edit');
+    Route::put('/students/{id}', 'updateStudent');
     Route::post('/deletestudent/{userId}/{id}', 'destroy');
 });
 

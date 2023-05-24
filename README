@@ -20,3 +20,10 @@ php artisan make:model -mcr Photo
 
 php artisan migrate:refresh --path=/database/migrations/2023_05_20_071207_create_branches_table.php
 php artisan migrate:refresh --step=5
+
+
+
+git branch
+git checkout -b student
+git push
+git push --set-upstream origin student

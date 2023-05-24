@@ -75,7 +75,7 @@
                      <button
                      data-user="{{ $student->user_id}}"
                      data-id="{{ $student->id }}"   class="btn btn-danger delete-student" ><i class="fa fa-trash"></i></button>
-                    <a href="/admin/students/{{ $student -> id }}/edit" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                    <a href="/admin/students/{{ $student -> id }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                     </td>
                   </tr>
                   @empty
