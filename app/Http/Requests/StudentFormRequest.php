@@ -65,7 +65,8 @@ class StudentFormRequest extends FormRequest
                 ],
 
 
-                 "password" =>["required","string","min:8"],
+                 "password" =>["required","string","min:8","max:16"],
+
 
                  'image' => ['required','image','mimes:jpg,png,jpeg','max:2048','dimensions:min_width=100,min_height=100,max_width=5000,max_height=5000',],
                     // "image"=>[ 'required',
@@ -81,18 +82,21 @@ class StudentFormRequest extends FormRequest
             $rules += [
                 "studentId"=>["required", "integer"],
                 "userId"=>["required","integer"],
-                // "email" =>  [
-                //     "required",
-                //     "email",
-                //     Rule::unique('users')->ignore($this->id),],
+                "email" =>  [
+                    "required",
+                    "email",
+                    Rule::unique('users')->ignore(Request::get('userId')),],
 
                 'phone' => [
                     'required',"unique:students,phone,".Request::get('studentId')
                 ],
-                
+                // "email" =>[
+                //     "required",
+                //     "email","max:60", "unique:users,email,".Request::get('userId'),],
+
                 'image' => 'nullable|sometimes|image|mimes:jpeg,bmp,png,jpg,svg|max:2000',
                 // 'image' => ['nullable','sometimes','image','mimes:jpg,png,jpeg','max:2048','dimensions:min_width=100,min_height=100,max_width=5000,max_height=5000',],
-                 "password" =>["nullable", "string","min:8"],
+                 "password" =>["nullable", "string", "min:8","max:16"],
             ];
         }
 

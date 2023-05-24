@@ -101,16 +101,30 @@
 
            {{-- Staff  --}}
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route("staff") }}" class="nav-link">
               {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
               <i class="nav-icon fa-solid fa-code-branch"></i>
               <p>
              Staff
               </p>
             </a>
+          </li>
+          {{-- Staff --}}
+
+
+        {{-- Staff  --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
+              <i class="nav-icon fa-solid fa-code-branch"></i>
+              <p>
+             Departments
+              </p>
+            </a>
 
           </li>
           {{-- Staff --}}
+
 
 
           <li class="nav-item">

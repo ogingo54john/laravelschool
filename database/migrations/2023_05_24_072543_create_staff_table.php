@@ -13,13 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('staff', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained()->onDelete("cascade");
             $table->string("phone")->unique();
-            $table->string("admission_number")->unique();
+            $table->string("staff_number")->unique();
+            $table->longText("qualifications");
+            $table->foreignId("branch_id")->constrained()->onDelete("cascade");
+            // $table->foreignId("branch_id")->constrained()->onDelete("cascade");
+            $table->longText("experience");
             $table->string("gender");
             $table->string("image");
+            $table->date("date_joined");
             $table->date("dob")->nullable();
             $table->string("father_name")->nullable();
             $table->string("father_occupation")->nullable();
@@ -43,6 +48,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('staff');
     }
 };

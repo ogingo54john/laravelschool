@@ -184,6 +184,19 @@ if($user){
     {
         $fileName = $student -> image;
     }
+
+    $password = $user->password;
+
+    if($request->has("password")){
+        $password = Hash::make($data["password"]);
+    }
+
+    $user->update([
+        "name"=>$data["name"],
+        "email"=>$data["email"],
+        "password" =>$password,
+
+    ]);
     $user->student()->update([
         "father_name"=>$data["father_name"],
         "father_occupation"=>$data["father_occupation"],

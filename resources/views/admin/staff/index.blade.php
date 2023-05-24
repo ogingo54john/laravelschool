@@ -37,7 +37,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                <a href="{{ route("create_student") }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Student</a>
+                <a href="{{ route("create_staff") }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Staff</a>
                 </h3>
               </div>
 
@@ -48,6 +48,7 @@
             @if (session("error"))
             <div class="alert alert-danger ms-3 mt-3"> {{ session("error") }}</div>
             @endif
+
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -64,7 +65,7 @@
                   </thead>
                   <tbody>
 
-                  @forelse ($students as $key => $student )
+                  @forelse ($staffs as $key => $student )
                   <tr>
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $student->user->name }}</td>

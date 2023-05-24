@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Auth;
 // use App\Http\Controllers\Admin\PostsController;
 // use App\Http\Controllers\Posts\PostsController as BlogController;
 // use App\Http\Controllers\Admin\PricingController;
-use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Admin\StudentController;
-use App\Http\Controllers\Admin\CoursesController;
+
+use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\UnitsController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\CoursesController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\BranchesController;
 Auth::routes();
 
@@ -86,15 +88,25 @@ Route::controller(BranchesController::class)->group(function () {
 });
 
 
-  //  Student routes
-  Route::controller(StudentController::class)->group(function () {
+    // Student routes
+    Route::controller(StudentController::class)->group(function () {
     Route::get('/students', 'students')->name("students");
     Route::get('/create_student', 'create')->name("create_student");
     Route::post('/create_student', 'store');
     Route::get('/students/{id}', 'edit');
     Route::put('/students/{id}', 'updateStudent');
     Route::post('/deletestudent/{userId}/{id}', 'destroy');
-});
+    });
+
+    // Staff routes
+    Route::controller(StaffController::class)->group(function () {
+        Route::get('/staff', 'index')->name("staff");
+        Route::get('/create_staff', 'create')->name("create_staff");
+        // Route::post('/create_student', 'store');
+        // Route::get('/students/{id}', 'edit');
+        // Route::put('/students/{id}', 'updateStudent');
+        // Route::post('/deletestudent/{userId}/{id}', 'destroy');
+        });
 
 
 });
