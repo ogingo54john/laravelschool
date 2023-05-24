@@ -49,6 +49,12 @@
         <li class="nav-item">
             <a class="nav-link active" id="pills-basic-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Basic Details</a>
         </li>
+     <li class="nav-item">
+            <a class="nav-link" id="pills-cv-tab" data-toggle="pill" href="#pills-cv" role="tab" aria-controls="pills-cv" aria-selected="false">Employment</a>
+        </li>
+
+
+
         <li class="nav-item">
             <a class="nav-link" id="pills-parent-tab" data-toggle="pill" href="#pills-parent" role="tab" aria-controls="pills-parent" aria-selected="false">Parent Details</a>
         </li>
@@ -124,8 +130,8 @@
         <label for="gender">Gender <span style="color:red">*</span></label>
         <select  class="form-control @error('gender') is-invalid @enderror" name="gender" id="gender" >
         <option value="">Select </option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
+         <option value="Male" {{old('gender') == 'Male' ? "selected" : ""}}>Male</option>
+         <option value="Female" {{old('gender') == 'Female' ? "selected" : "" }}>Female</option>
         </select>
         @error('gender')
             <span class="invalid-feedback" role="alert">
@@ -146,6 +152,39 @@
                 </span>
         @enderror
 
+        </div>
+
+        <div class="form-group col-md-6">
+        <label for="role_as">Role <span style="color:red">*</span></label>
+        <select   name="role_as" class="form-control @error('role_as') is-invalid @enderror" id="role_as">
+        <option value="">Select</option>
+         <option value="3" {{old('role_as') == '3' ? "selected" : ""}}>Tutor</option>
+         <option value="4" {{old('role_as') == '4' ? "selected" : ""}}>Accountant</option>
+       </select>
+        @error('role_as')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+        @enderror
+        </div>
+
+
+         <div class="form-group col-md-6">
+        <label for="branch_id">Staff Branch <span style="color:red">*</span></label>
+        <select   name="branch_id" class="form-control @error('branch_id') is-invalid @enderror" id="branch_id">
+         <option value="" >Select Branch</option>
+       @forelse ($branches as $branch )
+        <option value="{{ $branch->id }}" {{old('branch_id') == $branch->id ? "selected" : ""}}>{{ $branch->title }}</option>
+       @empty
+     <option value="" >No available branch</option>
+       @endforelse
+
+       </select>
+        @error('branch_id')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+        @enderror
         </div>
 
         <div class="form-group col-md-6">
@@ -174,6 +213,62 @@
           <a class="btn btn-primary float-right btnNext">Next &#8594;</a>
         </div>
         </div>
+
+
+        {{-- cv tab --}}
+ <div class="tab-pane fade" id="pills-cv" role="tabpanel" aria-labelledby="pills-cv-tab">
+ {{-- card-body --}}
+        <div class="card-body">
+
+        <div class="row">
+        <div class="form-group col-md-12">
+        <label for="date_joined">Date Joined <span style="color:red">*</span></label>
+        <input type="date" name="date_joined" value="{{ old("date_joined") }}" class="form-control @error('date_joined') is-invalid @enderror" id="date_joined"/>
+        @error('date_joined')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+        @enderror
+        </div>
+
+       <div class="form-group col-md-12">
+        <label for="experience">Experience</label>
+        <textarea name="experience"  class="form-control @error('experience') is-invalid @enderror" id="experience">
+     {{ old("experience") }}
+        </textarea>
+        @error('experience')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+        @enderror
+        </div>
+
+  <div class="form-group col-md-12">
+        <label for="qualification">Qualification</label>
+        <textarea name="qualification"  class="form-control @error('qualification') is-invalid @enderror" id="qualification">
+     {{ old("qualification") }}
+        </textarea>
+        @error('qualification')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+        @enderror
+        </div>
+         </div>
+
+
+     </div>
+        {{-- card-body --}}
+ <div class="card-footer">
+         <a  class="btn btn-primary float-right btnNext">Next &#8594;</a>
+        <a  class="btn btn-primary float-left btnPrevious">&#8592; Previous</a>
+
+
+        </div>
+
+ </div>
+
+        {{-- cv tab --}}
 
         {{-- parent tab --}}
         <div class="tab-pane fade" id="pills-parent" role="tabpanel" aria-labelledby="pills-parent-tab">
@@ -328,7 +423,7 @@
 
         <div class="card-footer">
         <a  class="btn btn-primary float-left btnPrevious">&#8592; Previous</a>
-        <button type="submit" class="btn btn-primary float-right">Add Student</button>
+        <button type="submit" class="btn btn-primary float-right">Add Staff</button>
         </div>
 
 

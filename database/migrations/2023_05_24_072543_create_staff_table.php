@@ -18,10 +18,10 @@ return new class extends Migration
             $table->foreignId("user_id")->constrained()->onDelete("cascade");
             $table->string("phone")->unique();
             $table->string("staff_number")->unique();
-            $table->longText("qualifications");
+            $table->longText("qualification")->nullable();
             $table->foreignId("branch_id")->constrained()->onDelete("cascade");
             // $table->foreignId("branch_id")->constrained()->onDelete("cascade");
-            $table->longText("experience");
+            $table->longText("experience")->nullable();
             $table->string("gender");
             $table->string("image");
             $table->date("date_joined");

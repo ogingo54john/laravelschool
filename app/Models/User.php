@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Post;
+use App\Models\Staff;
 use App\Models\Profile;
 use App\Models\Student;
 use Laravel\Sanctum\HasApiTokens;
@@ -55,5 +56,8 @@ class User extends Authenticatable
     }
     public function student(){
         return $this->hasOne(Student::class, "user_id", "id");
+    }
+    public function staff(){
+        return $this->hasOne(Staff::class, "user_id", "id");
     }
 }

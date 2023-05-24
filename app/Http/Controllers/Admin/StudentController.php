@@ -106,65 +106,6 @@ class StudentController extends Controller
     }
 
 
-public function update(StudentFormRequest $request){
-
-    try {
-        $data = $request->validated();
-        $userId = $data["userId"];
-        $user = User::findOrFail(intval($userId));
-        $student = $user->student()->where("id", intval($data["id"]))->first();
-        if($user){
-            // image uploading
-            // $fileName = "";
-            // if ($request->hasFile("image")){
-            // $path = public_path("students/" . $student->image);
-            // if(File::exists($path)){
-            // File::delete($path);
-            // }
-            // $file = $request->file("image");
-            // $fileName = time() . "." . $file -> getClientOriginalExtension();
-            // $file -> move(public_path("students/"), $fileName);
-
-            // }else
-            // {
-            //     $fileName = $student -> image;
-            // }
-
-            $user->student()->update([
-                // "father_name"=>$data["father_name"],
-                // "father_occupation"=>$data["father_occupation"],
-                // "father_phone_number"=>$data["father_phone_number"],
-                // "mother_name"=>$data["mother_name"],
-                // "mother_occupation"=>$data["mother_occupation"],
-                // "mother_phone_number"=>$data["father_phone_number"],
-                "phone"=>$data["phone"],
-                // "county"=>$data["county"],
-                // "district"=>$data["district"],
-                // "division"=>$data["division"],
-                // "location"=>$data["location"],
-                // "sub_location"=>$data["sub_location"],
-                // "gender"=>$data["gender"],
-                // "dob"=>$data["dob"],
-                // "image"=>$fileName,
-
-            ]);
-
-            return redirect("/admin/students")->with("message","Student Updated Sucessfully");
-
-
-            // return redirect("/admin/students")->with("message", $fileName);
-        }
-        else{
-            return redirect()->back()->with("message", "No matching records for the given student");
-        }
-    }
-    catch(Exception ){
-
-    }
-
-
-}
-
 public function updateStudent(StudentFormRequest $request,$id){
 $data = $request->validated();
 $user = User::findOrFail(intval($data["userId"]));

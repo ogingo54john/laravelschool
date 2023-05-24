@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Staff;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Branches extends Model
 {
@@ -12,4 +13,8 @@ class Branches extends Model
     protected $fillable = [
        "title", "initial", "status",
     ];
+
+    public function staffs(){
+        return $this->hasMany(Staff::class,"branch_id","id");
+    }
 }

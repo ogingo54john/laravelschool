@@ -124,8 +124,8 @@
         <label for="gender">Gender <span style="color:red">*</span></label>
         <select  class="form-control @error('gender') is-invalid @enderror" name="gender" id="gender" >
         <option value="">Select </option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
+        <option value="Male" {{old('gender') == 'Male' ? "selected" : ""}}>Male</option>
+         <option value="Female" {{old('gender') == 'Female' ? "selected" : "" }}>Female</option>
         </select>
         @error('gender')
             <span class="invalid-feedback" role="alert">
