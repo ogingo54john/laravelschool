@@ -114,10 +114,15 @@
 
 
           <li class="nav-item">
-            <a href="#" class="nav-link bg-danger">
+            <a href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();" class="nav-link bg-danger">
               <i class="nav-icon fas fa-power-off"></i>
               <p>Logout</p>
             </a>
+             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+             @csrf
+         </form>
           </li>
 
 

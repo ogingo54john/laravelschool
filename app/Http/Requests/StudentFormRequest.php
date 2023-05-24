@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\File;
+use Illuminate\Foundation\Http\FormRequest;
+
 class StudentFormRequest extends FormRequest
 {
     /**
@@ -63,11 +65,9 @@ class StudentFormRequest extends FormRequest
                 ],
 
 
-                 "password" =>[
-                    "required",
-                    "string",
-                    "min:8"],
-                    'image' => ['required','image','mimes:jpg,png,jpeg','max:5120','dimensions:min_width=100,min_height=100,max_width=5000,max_height=5000',],
+                 "password" =>["required","string","min:8"],
+
+                 'image' => ['required','image','mimes:jpg,png,jpeg','max:2048','dimensions:min_width=100,min_height=100,max_width=5000,max_height=5000',],
                     // "image"=>[ 'required',
                 // File::image()
                 //     ->min(566)
@@ -85,14 +85,14 @@ class StudentFormRequest extends FormRequest
                 //     "required",
                 //     "email",
                 //     Rule::unique('users')->ignore($this->id),],
-                "phone" =>[
-                    "required",
-                    "string",
-                    "min:10",
-                    "max:15",
-                    Rule::unique('students')->ignore($this->id),
-                 ],
-                 'image' => ['image','mimes:jpg,png,jpeg','max:5120',],
+
+                'phone' => [
+                    'required',"unique:students,phone,".Request::get('studentId')
+                ],
+                
+                'image' => 'nullable|sometimes|image|mimes:jpeg,bmp,png,jpg,svg|max:2000',
+                // 'image' => ['nullable','sometimes','image','mimes:jpg,png,jpeg','max:2048','dimensions:min_width=100,min_height=100,max_width=5000,max_height=5000',],
+                 "password" =>["nullable", "string","min:8"],
             ];
         }
 
@@ -114,7 +114,7 @@ class StudentFormRequest extends FormRequest
             "password.min"=>"Password should be at least 8 characters",
             "gender.required"=>"Student Gender is required",
             "image.required"=>"Student Photo is required",
-            "image.min"=>"Student Photo be upto 2mb",
+
 
 
 

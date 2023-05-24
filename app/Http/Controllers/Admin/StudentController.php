@@ -115,37 +115,37 @@ public function update(StudentFormRequest $request){
         $student = $user->student()->where("id", intval($data["id"]))->first();
         if($user){
             // image uploading
-            $fileName = "";
-            if ($request->hasFile("image")){
-            $path = public_path("students/" . $student->image);
-            if(File::exists($path)){
-            File::delete($path);
-            }
-            $file = $request->file("image");
-            $fileName = time() . "." . $file -> getClientOriginalExtension();
-            $file -> move(public_path("students/"), $fileName);
+            // $fileName = "";
+            // if ($request->hasFile("image")){
+            // $path = public_path("students/" . $student->image);
+            // if(File::exists($path)){
+            // File::delete($path);
+            // }
+            // $file = $request->file("image");
+            // $fileName = time() . "." . $file -> getClientOriginalExtension();
+            // $file -> move(public_path("students/"), $fileName);
 
-            }else
-            {
-                $fileName = $student -> image;
-            }
+            // }else
+            // {
+            //     $fileName = $student -> image;
+            // }
 
             $user->student()->update([
-                "father_name"=>$data["father_name"],
-                "father_occupation"=>$data["father_occupation"],
-                "father_phone_number"=>$data["father_phone_number"],
-                "mother_name"=>$data["mother_name"],
-                "mother_occupation"=>$data["mother_occupation"],
-                "mother_phone_number"=>$data["father_phone_number"],
+                // "father_name"=>$data["father_name"],
+                // "father_occupation"=>$data["father_occupation"],
+                // "father_phone_number"=>$data["father_phone_number"],
+                // "mother_name"=>$data["mother_name"],
+                // "mother_occupation"=>$data["mother_occupation"],
+                // "mother_phone_number"=>$data["father_phone_number"],
                 "phone"=>$data["phone"],
-                "county"=>$data["county"],
-                "district"=>$data["district"],
-                "division"=>$data["division"],
-                "location"=>$data["location"],
-                "sub_location"=>$data["sub_location"],
-                "gender"=>$data["gender"],
-                "dob"=>$data["dob"],
-                "image"=>$fileName,
+                // "county"=>$data["county"],
+                // "district"=>$data["district"],
+                // "division"=>$data["division"],
+                // "location"=>$data["location"],
+                // "sub_location"=>$data["sub_location"],
+                // "gender"=>$data["gender"],
+                // "dob"=>$data["dob"],
+                // "image"=>$fileName,
 
             ]);
 
@@ -165,4 +165,48 @@ public function update(StudentFormRequest $request){
 
 }
 
+public function updateStudent(StudentFormRequest $request,$id){
+$data = $request->validated();
+$user = User::findOrFail(intval($data["userId"]));
+if($user){
+    $student = $user->student()->where("id", intval($id))->first();
+    $fileName = "";
+    if ($request->hasFile("image")){
+    $path = public_path("students/" . $student->image);
+    if(File::exists($path)){
+    File::delete($path);
+    }
+    $file = $request->file("image");
+    $fileName = time() . "." . $file -> getClientOriginalExtension();
+    $file -> move(public_path("students/"), $fileName);
+
+    }else
+    {
+        $fileName = $student -> image;
+    }
+    $user->student()->update([
+        "father_name"=>$data["father_name"],
+        "father_occupation"=>$data["father_occupation"],
+        "father_phone_number"=>$data["father_phone_number"],
+        "mother_name"=>$data["mother_name"],
+        "mother_occupation"=>$data["mother_occupation"],
+        "mother_phone_number"=>$data["father_phone_number"],
+        "phone"=>$data["phone"],
+        "county"=>$data["county"],
+        "district"=>$data["district"],
+        "division"=>$data["division"],
+        "location"=>$data["location"],
+        "sub_location"=>$data["sub_location"],
+        "gender"=>$data["gender"],
+        "dob"=>$data["dob"],
+        "image"=>$fileName,
+
+    ]);
+
+    return redirect("/admin/students")->with("message","Student Updated Sucessfully");
+}else{
+    return redirect()->back()->with("error","No matching records for given student");
+}
+
+}
 }
