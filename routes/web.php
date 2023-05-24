@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\CoursesController;
 use App\Http\Controllers\Admin\UnitsController;
 use App\Http\Controllers\Admin\BranchesController;
+use App\Http\Controllers\Student\StudentDashboardController;
 Auth::routes();
 
 
@@ -95,4 +96,9 @@ Route::controller(BranchesController::class)->group(function () {
 });
 
 
+});
+
+
+Route::prefix("student")->middleware(["auth", "isStudent"])->group(function(){
+    Route::get('/dashboard', [App\Http\Controllers\Student\StudentDashboardController::class, 'index']);
 });
