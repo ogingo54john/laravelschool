@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StaffFormRequest extends FormRequest
@@ -25,7 +26,8 @@ class StaffFormRequest extends FormRequest
     public function rules()
     {
         $rules =[
-             "branch_id"=>["required", "integer",],
+            "date_joined"=>["required", "date"],
+            "branch_id"=>["required", "integer",],
             "name"=>["required", "string","max:60"],
             "gender" =>["required",  "string", ],
             "experience"=>["nullable", "string", "max:500"],
@@ -63,9 +65,26 @@ class StaffFormRequest extends FormRequest
                  Rule::unique('staff')
                  ->where('staff_number', $this->staff_number)
                 ],
-                "date_joined"=>["required", "date"],
                 "password" =>["required","string","min:8","max:16"],
                 'image' => ['required','image','mimes:jpg,png,jpeg','max:2048','dimensions:min_width=100,min_height=100,max_width=5000,max_height=5000',],
+            ];
+        }
+        if($this->getMethod() == "PUT"){
+            $rules += [
+                "staffId"=>["required", "integer"],
+                "userId"=>["required","integer"],
+                "email" =>  [
+                    "required",
+                    "email",
+                    Rule::unique('users')->ignore(Request::get('userId')),],
+
+                'phone' => [
+                    'required',"unique:staff,phone,".Request::get('staffId')
+                ],
+
+                'image' => 'nullable|sometimes|image|mimes:jpeg,bmp,png,jpg,svg|max:2000',
+                // 'image' => ['nullable','sometimes','image','mimes:jpg,png,jpeg','max:2048','dimensions:min_width=100,min_height=100,max_width=5000,max_height=5000',],
+                 "password" =>["nullable", "string", "min:8","max:16"],
             ];
         }
 

@@ -65,20 +65,20 @@
                   </thead>
                   <tbody>
 
-                  @forelse ($staffs as $key => $student )
+                  @forelse ($staffs as $key => $staff )
                   <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{ $student->user->name }}</td>
-                    <td> {{$student->user->email}}     </td>
-                    <td>  {{$student->phone}} </td>
-                    <td>{{ $student->created_at }}</td>
-                    {{-- <td>{{ $student->status }}</td> --}}
+                    <td>{{ $staff->user->name }}</td>
+                    <td> {{$staff->user->email}}     </td>
+                    <td>  {{$staff->phone}} </td>
+                    <td>{{ $staff->created_at }}</td>
+                    {{-- <td>{{ $staff->status }}</td> --}}
                     <td>
 
                      <button
-                     data-user="{{ $student->user_id}}"
-                     data-id="{{ $student->id }}"   class="btn btn-danger delete-student" ><i class="fa fa-trash"></i></button>
-                    <a href="/admin/students/{{ $student -> id }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                     data-user="{{ $staff->user_id}}"
+                     data-id="{{ $staff->id }}"   class="btn btn-danger delete-staff" ><i class="fa fa-trash"></i></button>
+                    <a href="/admin/staff/{{ $staff -> id }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                     </td>
                   </tr>
                   @empty
@@ -121,6 +121,6 @@
 @section("scripts")
 @include("layouts.tables")
 
-<script src="{{ asset("admin/assets/js/actions/deletestudent.js")}}"></script>
+<script src="{{ asset("admin/assets/js/actions/deletestaff.js")}}"></script>
 <script src="{{ asset("admin/assets/js/swal.js")}}"></script>
 @endsection

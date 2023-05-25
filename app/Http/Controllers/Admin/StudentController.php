@@ -82,7 +82,7 @@ class StudentController extends Controller
         if($student){
            return view("admin.students.edit",compact("student"));
         } else{
-                return redirect()->back()->with("message","Student not Found");
+                return redirect()->back()->with("error","Student not Found");
             }
     }
 

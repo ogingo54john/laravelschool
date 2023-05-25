@@ -59,9 +59,7 @@
       </p>
     </a>
 
-
-
-    <ul class="nav nav-treeview">
+<ul class="nav nav-treeview">
 @if (Auth::user()->student)
 <li class="nav-item">
     <a href="{{url('/student/profile')}}" class="nav-link">
@@ -76,7 +74,7 @@
       <p>Create Profile</p>
     </a>
   </li>
-@endif
+ @endif
         <li class="nav-item">
         <a href="{{url('/student/profile')}}" class="nav-link">
           <i class="far fa-circle nav-icon"></i>
@@ -96,13 +94,17 @@
   @endif
 {{-- # --}}
 
-          <li class="nav-item">
-            <a href="#" class="nav-link bg-danger">
-              <i class="nav-icon fas fa-power-off"></i>
-              <p>Logout</p>
-            </a>
-          </li>
-
+<li class="nav-item">
+<a href="{{ route('logout') }}"
+onclick="event.preventDefault();
+document.getElementById('logout-form').submit();" class="nav-link bg-danger">
+<i class="nav-icon fas fa-power-off"></i>
+<p>Logout</p>
+</a>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+@csrf
+</form>
+</li>
 
 
         </ul>

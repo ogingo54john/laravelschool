@@ -62,19 +62,20 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                    @if ($user->role_as == "0")
-                  <label class="badge badge-danger">Staff</label>
+                    @if ($user->role_as == "2")
+                  <label class="badge badge-info">Student</label>
                     @elseif ($user->role_as == "1")
                   <label class="badge badge-primary">Admin</label>
+                    @elseif ($user->role_as == "3")
+                  <label class="badge badge-success">Accountant</label>
                     @else
-                  <label class="badge badge-success">User</label>
-
+                     <label class="badge badge-danger">User</label></label>
                     @endif
 
                     </td>
                     <td>{{ $user->created_at }}</td>
-                    <td><button  href="" class="btn btn-danger deleteuser" data-id="{{ $user->id }}"><i class="mdi mdi-delete"></i></button>
-                        <a href="/admin/users/{{ $user -> id }}/edit" class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                    <td><button  class="btn btn-danger deleteuser" data-id="{{ $user->id }}"><i class="fa fa-trash"></i></button>
+                        <a href="/admin/users/{{ $user -> id }}/edit" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                     </td>
                   </tr>
                   @empty

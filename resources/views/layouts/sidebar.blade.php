@@ -126,6 +126,46 @@
           {{-- Staff --}}
 
 
+  {{-- # --}}
+  @if(Auth::user()->role_as=='1')
+  <li class="nav-item">
+    <a href="#" class="nav-link">
+      <i class="nav-icon fas fa-chart-pie"></i>
+      <p>
+        Account
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
+
+<ul class="nav nav-treeview">
+@if (Auth::user()->student)
+<li class="nav-item">
+    <a href="{{url('/student/profile')}}" class="nav-link">
+      <i class="far fa-circle nav-icon"></i>
+      <p>Update Profile</p>
+    </a>
+  </li>
+@else
+<li class="nav-item">
+    <a href="{{url('/student/profile/create')}}" class="nav-link">
+      <i class="far fa-circle nav-icon"></i>
+      <p>Create Profile</p>
+    </a>
+  </li>
+ @endif
+
+<li class="nav-item">
+<a href="#" class="nav-link bg-warning">
+<i class="far fa-circle nav-icon"></i>
+<p>Update Password</p>
+</a>
+</li>
+</ul>
+
+  </li>
+  @endif
+{{-- # --}}
+
 
           <li class="nav-item">
             <a href="{{ route('logout') }}"
@@ -138,8 +178,6 @@
              @csrf
          </form>
           </li>
-
-
 
         </ul>
       </nav>

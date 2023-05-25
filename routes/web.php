@@ -105,9 +105,9 @@ Route::controller(BranchesController::class)->group(function () {
         Route::get('/staff', 'index')->name("staff");
         Route::get('/create_staff', 'create')->name("create_staff");
         Route::post('/create_staff', 'store');
-        // Route::get('/students/{id}', 'edit');
-        // Route::put('/students/{id}', 'updateStudent');
-        // Route::post('/deletestudent/{userId}/{id}', 'destroy');
+        Route::get('/staff/{id}', 'edit');
+        Route::put('/staff/{id}/edit', 'update');
+        Route::post('/deletestaff/{userId}/{id}', 'destroy');
         });
 
 

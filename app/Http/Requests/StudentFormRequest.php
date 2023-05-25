@@ -119,9 +119,6 @@ class StudentFormRequest extends FormRequest
             "gender.required"=>"Student Gender is required",
             "image.required"=>"Student Photo is required",
 
-
-
-
         ];
     }
 }
